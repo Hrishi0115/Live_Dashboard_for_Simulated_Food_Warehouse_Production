@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Package Dashboard</title>
+    <script src="https://cdn.socket.io/4.0.0/socket.io.min.js"></script>
+    <script>
+        const socket = io();
+
+        socket.on('connect', () => {
+            console.log('Connected to server');
+        });
+
+        socket.on('update_dashboard', (data) => {
+            document.getElementById('data').innerHTML += `<p>Counted a ${data.shape} package of size ${data.size[0]}x${data.size[1]}</p>`;
+        });
+    </script>
+</head>
+<body>
+    <h1>Package Count Dashboard</h1>
+    <div id="data"></div>
+</body>
+</html>

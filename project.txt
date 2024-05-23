@@ -1,0 +1,25 @@
+Step 1: Define the Simulation Parameters
+We will need to define the parameters of the simulation. This includes:
+- Package Characteristics: Size, Shape, and the interval at which they pass the sensors
+- Sensor Behaviour: Simulating how the sensor would react to each package based on its characterists
+
+Step 2: Set up the Simulation Environment
+We'll use Python for the simulation - we'll simulate the two types of sensors I selected:
+
+- IR Sensor: Detects objects passing and breaks in an IR beam.
+- Ultrasonic Sensor: Confirms object detection and helps calculate dimensions
+
+Step 3: Simulate Sensor Data
+We need to create functions that simulate the readings from the sensors based on the different package types.
+
+Step 4: Implement Data Logging
+This will involve simulating the data logging that would occur in the device, capturing information such as the count of the packages,
+timestamps, and any other relevant data.
+
+Step 5: Build Basic Processing Logic
+After simulating the sensor data, we will need to process this data to maintain an accurate count and manage any discrepancies the sensors may pick up.
+
+Step 6: Prepare for Dashboard Integration
+- prepare the data in a format that can be easily used by a dashboard for real-time display
+
+

@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Package Dashboard</title>
+<script src="https://cdn.socket.io/4.0.0/socket.io.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<style>
+    body { font-family: Arial, sans-serif; margin: 40px; background-color: #f4f4f9; }
+    h1 { color: #333; }
+    #data { margin-top: 20px; padding: 20px; background: white; box-shadow: 0 2px 4px rgba(0,0,0,0.1); }
+    .package { padding: 10px; border-bottom: 1px solid #eee; }
+    .package:last-child { border-bottom: none; }
+</style>
+</head>
+<body>
+<h1>Package Count Dashboard</h1>
+<canvas id="packageChart" width="400" height="400"></canvas>
+<div id="data"></div>
+
+<script>
+    const socket = io();
+
+    const ctx = document.getElementById('packageChart').getContext('2d');
+    const packageChart = new Chart(ctx, {
+        type: 'bar',
+        data: {
+            labels: ['Rect', 'Circle'],
+            datasets: [{
+                label: 'Number of Packages',
+                data: [0, 0], // Initial data
+                backgroundColor: [
+                    'rgba(255, 99, 132, 0.2)',
+                    'rgba(54, 162, 235, 0.2)'
+                ],
+                borderColor: [
+                    'rgba(255, 99, 132, 1)',
+                    'rgba(54, 162, 235, 1)'
+                ],
+                borderWidth: 1
+            }]
+        },
+        options: {
+            scales: {
+                y: {
+                    beginAtZero: true
+                }
+            }
+        }
+    });
+
+    socket.on('connect', () => {
+        console.log('Connected to server');
+    });
+
+    socket.on('update_dashboard', (data) => {
+        const container = document.getElementById('data');
+        const entry = document.createElement('div');
+        entry.className = 'package';
+        entry.innerHTML = `Counted a <strong>${data.shape}</strong> package of size ${data.size[0]}x${data.size[1]}`;
+        container.prepend(entry); // Prepend to make the most recent at the top
+
+        // Update chart
+        const shapeIndex = data.shape === 'rect' ? 0 : 1;
+        packageChart.data.datasets[0].data[shapeIndex]++;
+        packageChart.update();
+    });
+</script>
+</body>
+</html>

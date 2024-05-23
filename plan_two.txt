@@ -1,0 +1,24 @@
+Step 1: Setup and Tools
+- Tools: Python for simulation and backend,
+- HTML/CSS/JavaScript for the dashboard, and WebSocket for real-time data communication
+
+- Visual Simulation: Use a simple graphical library in Python, such as 'pygame' or 'turtle' to create a visual representation of the conveyor and packages.
+
+Step 2: Simulating Enviroment with Visuals
+- Enviromental Setup: Develop a visual conveyor belt environment where packages of different sizes and shapes move towards a sensor
+- Sensor Interaction: Visualise the interaction between the package and IR sensor. Show how the sensor detects each package type differently, possible affecting the detection
+logic.
+
+Step 3: Data Processing and Logging
+Sensor Data Handling: Develop the logic for how sensors detect and count packages based on their characteristics. This includes handling false detections or misses due to package
+transparency or other factors.
+Data Logging: Log every detection with timestamps, package type, and count.
+
+Step 4: Real-Time Dashboard
+Dashboard Setup: Use web technologies to create a dashboard that displays the count of packages, types of packages, and rates of flow.
+Data Communication: Implement WebSocket to push updates from the simulation to the dashboard in real-time.
+
+Step 5: Integrating and Testing
+Integration: Ensure all components work seamlessly—visual simulation, sensor data processing, and dashboard updates.
+Testing: Test the system thoroughly to ensure accuracy and responsiveness. Adjust detection algorithms based on package characteristics and conveyor speed.
+
